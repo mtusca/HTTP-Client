@@ -4,6 +4,8 @@ Acest proiect implementează un client care interacționează prin HTTP cu serve
 Clientul permite administrarea utilizatorilor, autentificarea utilizatorilor obișnuiți, obținerea unui token JWT, precum și gestionarea filmelor și a colecțiilor.
 
 ## Structura proiectului
+
+```text
 .
 ├── client.c - logica CLI și, de asemenea, toate comenzile
 ├── requests.c/h - constructori de cereri HTTP (GET/POST/PUT/DELETE)
@@ -12,7 +14,7 @@ Clientul permite administrarea utilizatorilor, autentificarea utilizatorilor obi
 ├── parson.c/h - bibliotecă JSON din enunțul temei
 ├── Makefile
 └── README.md
-
+```
 
 ## Descriere funcționalitate
 
