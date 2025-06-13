@@ -1,14 +1,44 @@
-Acest proiect implementează un client care interacţionează prin HTTP cu serverul public oferit.
-Clientul permite administrarea utilizatorilor, autentificarea de utilizatori obişnuiţi, obţinerea unui token JWT, precum şi gestionarea filmelor şi a colecţiilor.
+# Client HTTP - Administrare utilizatori și filme
+
+Acest proiect implementează un client care interacționează prin HTTP cu serverul public oferit.  
+Clientul permite administrarea utilizatorilor, autentificarea utilizatorilor obișnuiți, obținerea unui token JWT, precum și gestionarea filmelor și a colecțiilor.
+
+## Structura proiectului
 .
-├── client.c      - logica CLI şi, de asemenea, toate comenzile
-├── requests.c/h  - constructori de cereri HTTP (GET/POST/PUT/DELETE)
-├── helpers.c/h   - utilitare socket + parsarea de răspuns
-├── buffer.c/h    - buffer folosit la recepţia răspunsului
-├── parson.c/h    - bibliotecă JSON din enunţul temei
+├── client.c - logica CLI și, de asemenea, toate comenzile
+├── requests.c/h - constructori de cereri HTTP (GET/POST/PUT/DELETE)
+├── helpers.c/h - utilitare socket + parsarea de răspuns
+├── buffer.c/h - buffer folosit la recepția răspunsului
+├── parson.c/h - bibliotecă JSON din enunțul temei
 ├── Makefile
 └── README.md
 
-Interacţiunea se bazează pe patru grupe de comenzi: admin, user, filme şi colecţii.
-La primirea fiecăreia dintre comenzi, programul solicită parametrii, îi încorporează într-un mesaj HTTP şi îl trimite cu send_to_server. Răspunsul este citit integral, se extrage corpul JSON şi se afişează informaţia solicitată.
-Pentru accesul la biblioteca de filme se foloseşte un token JWT. Macro-ul NEED_TOKEN() întrerupe rapid o comandă atunci când token-ul lipseşte şi afişează mesajul de eroare. ID-urile filmelor descărcate sunt stocate într-un vector dinamic. La crearea colecţiilor se poate verifica dacă un ID introdus de utilizator a fost obţinut anterior. Am ales biblioteca Parson pentru parsarea şi generarea obiectelor JSON oferită în enunţul temei, aceasta fiind uşor de utilizat, garantând portabilitatea arhivei şi absenţa dependenţelor externe. De asemenea, aceasta are o dimensiune mică.
+
+## Descriere funcționalitate
+
+Interacțiunea se bazează pe patru grupe de comenzi: `admin`, `user`, `filme` și `colecții`.
+
+La primirea fiecărei comenzi, programul:
+1. Solicită parametrii necesari de la utilizator.
+2. Îi încorporează într-un mesaj HTTP.
+3. Trimite mesajul către server prin `send_to_server`.
+4. Primește răspunsul complet.
+5. Extrage corpul JSON și afișează informațiile solicitate.
+
+Pentru accesul la biblioteca de filme se folosește un **token JWT**.  
+Un macro `NEED_TOKEN()` întrerupe rapid comenzile ce necesită autentificare, dacă token-ul lipsește, și afișează un mesaj de eroare.
+
+ID-urile filmelor descărcate sunt stocate într-un **vector dinamic**.  
+La crearea colecțiilor se poate verifica dacă un ID introdus de utilizator a fost deja obținut anterior.
+
+## Bibliotecă JSON
+
+Pentru parsarea și generarea obiectelor JSON, a fost utilizată biblioteca **Parson**, oferită în enunțul temei.  
+Aceasta este:
+- ușor de utilizat,
+- portabilă,
+- lipsită de dependențe externe,
+- de dimensiune redusă.
+
+---
+
